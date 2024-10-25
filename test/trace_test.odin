@@ -1,7 +1,7 @@
-package trace
+package test
 
+import trace "../"
 import "core:testing"
-
 
 @(private = "file")
 Another_Error :: enum {
@@ -48,9 +48,9 @@ test_trace :: proc(t: ^testing.T) {
 		Example3_Error(Example2_Error(Struct_Error{num = 23, msg = "alalalala"})),
 	)
 
-	traced_enum := trace(err_enum)
+	traced_enum := trace.trace(err_enum)
 	defer delete(traced_enum)
-	traced_struct := trace(err_struct)
+	traced_struct := trace.trace(err_struct)
 	defer delete(traced_struct)
 
 	testing.expect_value(
